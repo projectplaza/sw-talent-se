@@ -1,0 +1,22 @@
+{
+  "name": "sw-talent-se",
+  "version": "0.0.1",
+  "description": "SmartWork Talent for SE",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/projectplaza/sw-talent-se.git"
+  },
+  "author": "yumochi21",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/projectplaza/sw-talent-se/issues"
+  },
+  "homepage": "https://github.com/projectplaza/sw-talent-se#readme",
+  "dependencies": {
+    "hyperapp": "^1.2.9"
+  }
+}
