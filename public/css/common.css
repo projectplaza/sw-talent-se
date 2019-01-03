@@ -5,7 +5,7 @@ html, body {
 
 * {
     outline: none;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .header {
@@ -21,7 +21,8 @@ html, body {
 }
 .title {
     margin-left: 10px;
-    color: #666666;
+    color: #283593;
+    font-weight: 700;
 }
 
 .left-menu {
@@ -51,4 +52,20 @@ html, body {
     margin-right: 15px;
     width: 24px;
     vertical-align: middle;
+}
+
+body {
+    position: fixed;
+    top: 37px;
+    left: 150px;
+    width: calc(100% - 150px);
+    height: 100%;
+}
+
+.content {
+    position: relative;
+}
+
+[v-cloak] {
+    display: none;
 }

@@ -22,11 +22,190 @@
         <div class="function"><img src="./img/project.png">案件</div>
         <div class="function"><img src="./img/sales.png">売上</div>
         <div class="function"><img src="./img/report.png">日報</div>
-        <div class="function"><img src="./img/report.png">スケジュール</div>
+        <div class="function"><img src="./img/calendar.png">スケジュール</div>
     </div>
-    
-    <div class="content">
 
+    <div class="content" id="customer" v-cloak>
+        <div class="left-list">
+            <div class="customer-search-name">
+                <input type="text" placeholder="検索" />
+            </div>
+            <div class="customer-sumnail">ABC株式会社</div>
+            <div class="customer-sumnail">DEF株式会社</div>
+            <div class="customer-sumnail">GHI株式会社</div>
+            <div class="customer-sumnail">JKL株式会社</div>
+        </div>
+        <div class="customer-card">
+            <div class="customer-card-header">
+                <div class="customer-inner-content">
+                    <div class="customer-name">ABC株式会社</div>
+                </div>
+                <div class="customer-edit-button" v-if="mode.show" @click="edit">
+                    <img src="./img/edit.png" />
+                </div>
+                <div class="customer-edit-button" v-if="mode.edit" @click="cancel">
+                    <img src="./img/cancel.png" />
+                </div>
+                <div class="customer-add-button">
+                    <img src="./img/add.png" />
+                </div>
+            </div>
+            <div class="customer-content-row">
+                <div class="customer-content-row-title">基本情報</div>
+                <div class="customer-content">
+                    <div class="customer-content-title">会社名</div>
+                    <div class="customer-inner-content">
+                        <div v-if="mode.show">{{customer.base.companyName}}</div>
+                        <div v-if="mode.edit"><input type="text" v-model="customer.base.companyName" /></div>
+                    </div>
+                </div>
+                <div class="customer-content">
+                    <div class="customer-content-title">所在地</div>
+                    <div class="customer-inner-content">
+                        <div v-if="mode.show">{{customer.base.address}}</div>
+                        <div v-if="mode.edit"><input type="text" v-model="customer.base.address" /></div>
+                    </div>
+                </div>
+                <div class="customer-content">
+                    <div class="customer-content-title">代表番号</div>
+                    <div class="customer-inner-content">
+                        <div v-if="mode.show"><a :href="'tel:' + customer.base.mainTelNo">{{customer.base.mainTelNo}}</a></div>
+                        <div v-if="mode.edit"><input type="text" v-model="customer.base.mainTelNo" /></div>
+                    </div>
+                </div>
+            </div>
+            <div class="customer-content-row">
+                <div class="customer-content-row-title">担当者情報</div>
+                <div class="customer-content">
+                    <div class="customer-content-title">氏名</div>
+                    <div class="customer-inner-content">
+                        <div v-if="mode.show">{{customer.charge.name}}</div>
+                        <div v-if="mode.edit"><input type="text" v-model="customer.charge.name" /></div>
+                    </div>
+                </div>
+                <div class="customer-content">
+                    <div class="customer-content-title">氏名カナ</div>
+                    <div class="customer-inner-content">
+                        <div v-if="mode.show">{{customer.charge.nameKana}}</div>
+                        <div v-if="mode.edit"><input type="text" v-model="customer.charge.nameKana" /></div>
+                    </div>
+                </div>
+                <div class="customer-content">
+                    <div class="customer-content-title">部署</div>
+                    <div class="customer-inner-content">
+                        <div v-if="mode.show">{{customer.charge.department}}</div>
+                        <div v-if="mode.edit"><input type="text" v-model="customer.charge.department" /></div>
+                    </div>
+                </div>
+                <div class="customer-content">
+                    <div class="customer-content-title">E-mail</div>
+                    <div class="customer-inner-content">
+                        <div v-if="mode.show"><a :href="'mailto:' + customer.charge.email">{{customer.charge.email}}</a></div>
+                        <div v-if="mode.edit"><input type="text" v-model="customer.charge.email" /></div>
+                    </div>
+                </div>
+                <div class="customer-content">
+                    <div class="customer-content-title">電話番号</div>
+                    <div class="customer-inner-content">
+                        <div v-if="mode.show"><a :href="'tel:' + customer.charge.telNo">{{customer.charge.telNo}}</a></div>
+                        <div v-if="mode.edit"><input type="text" v-model="customer.charge.telNo" /></div>
+                    </div>
+                </div>
+            </div>
+            <div class="customer-content-row">
+                <div class="customer-content-row-title">関連情報</div>
+                <div class="customer-content customer-content-table">
+                    <div class="customer-content-title">プロジェクト情報</div>
+                    <div class="customer-inner-content">
+                        <table class="customer-relation-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>コード</th>
+                                    <th>プロジェクト名</th>
+                                    <th>担当者</th>
+                                    <th>開始日</th>
+                                    <th>終了日</th>
+                                    <th>売上</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="customer-relation-icon-td">
+                                        <div class="customer-relation-icon">
+                                            <img src="./img/link.png" />
+                                        </div>
+                                    </td>
+                                    <td>P-00001</td>
+                                    <td>初期システム開発</td>
+                                    <td>須磨和久</td>
+                                    <td>2018-12-01</td>
+                                    <td>2019-02-28</td>
+                                    <td>¥ 20,000 -</td>
+                                </tr>
+                                <tr>
+                                    <td class="customer-relation-icon-td">
+                                        <div class="customer-relation-icon">
+                                            <img src="./img/link.png" />
+                                        </div>
+                                    </td>
+                                    <td>P-00001</td>
+                                    <td>初期システム開発</td>
+                                    <td>須磨和久</td>
+                                    <td>2018-12-01</td>
+                                    <td>2019-02-28</td>
+                                    <td>¥ 20,000 -</td>
+                                </tr>
+                                <tr>
+                                    <td class="customer-relation-icon-td">
+                                        <div class="customer-relation-icon">
+                                            <img src="./img/link.png" />
+                                        </div>
+                                    </td>
+                                    <td>P-00001</td>
+                                    <td>初期システム開発</td>
+                                    <td>須磨和久</td>
+                                    <td>2018-12-01</td>
+                                    <td>2019-02-28</td>
+                                    <td>¥ 20,000 -</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="customer-content customer-content-table">
+                    <div class="customer-content-title">対応履歴</div>
+                    <div class="customer-inner-content">
+                        <table class="customer-relation-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>日付</th>
+                                    <th>区分</th>
+                                    <th>担当者</th>
+                                    <th>質問内容</th>
+                                    <th>対応内容</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="customer-relation-icon-td">
+                                        <div class="customer-relation-icon">
+                                            <img src="./img/link.png" />
+                                        </div>
+                                    </td>
+                                    <td>2018-12-31</td>
+                                    <td>問合せ対応</td>
+                                    <td>須磨和久</td>
+                                    <td>どうやったら利用を開始できますか？</td>
+                                    <td>下記のホームページを参考にしてください。<br /><a href="https://google.com/" target="_blank">https://google.com/</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="./js/customer.js"></script>
