@@ -15,6 +15,7 @@
     <div class="left-menu">
         <div class="function"><img src="./img/smartwork.png">SmartWork</div>
         <div class="function"><img src="./img/mypage.png">マイページ</div>
+        <div class="function"><img src="./img/notification.png">通知</div>
         <div class="function"><img src="./img/talent.png">タレント</div>
         <div class="function"><img src="./img/skill.png">スキル</div>
         <div class="function"><img src="./img/customer.png">顧客</div>
@@ -38,7 +39,7 @@
         <div class="customer-card">
             <div class="customer-card-header">
                 <div class="customer-inner-content">
-                    <div class="customer-name">ABC株式会社</div>
+                    <div class="customer-name">{{customer.base.companyName}}</div>
                 </div>
                 <div class="customer-edit-button" v-if="mode.show" @click="edit">
                     <img src="./img/edit.png" />
@@ -130,44 +131,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr v-for="p in customer.relation.project">
                                     <td class="customer-relation-icon-td">
                                         <div class="customer-relation-icon">
                                             <img src="./img/link.png" />
                                         </div>
                                     </td>
-                                    <td>P-00001</td>
-                                    <td>初期システム開発</td>
-                                    <td>須磨和久</td>
-                                    <td>2018-12-01</td>
-                                    <td>2019-02-28</td>
-                                    <td>¥ 20,000 -</td>
-                                </tr>
-                                <tr>
-                                    <td class="customer-relation-icon-td">
-                                        <div class="customer-relation-icon">
-                                            <img src="./img/link.png" />
-                                        </div>
-                                    </td>
-                                    <td>P-00001</td>
-                                    <td>初期システム開発</td>
-                                    <td>須磨和久</td>
-                                    <td>2018-12-01</td>
-                                    <td>2019-02-28</td>
-                                    <td>¥ 20,000 -</td>
-                                </tr>
-                                <tr>
-                                    <td class="customer-relation-icon-td">
-                                        <div class="customer-relation-icon">
-                                            <img src="./img/link.png" />
-                                        </div>
-                                    </td>
-                                    <td>P-00001</td>
-                                    <td>初期システム開発</td>
-                                    <td>須磨和久</td>
-                                    <td>2018-12-01</td>
-                                    <td>2019-02-28</td>
-                                    <td>¥ 20,000 -</td>
+                                    <td>{{p.code}}</td>
+                                    <td>{{p.projectName}}</td>
+                                    <td>{{p.charge}}</td>
+                                    <td>{{p.startDate}}</td>
+                                    <td>{{p.endDate}}</td>
+                                    <td>¥ {{p.sales}} -</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -188,17 +163,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr v-for="c in customer.relation.customerDealing">
                                     <td class="customer-relation-icon-td">
                                         <div class="customer-relation-icon">
                                             <img src="./img/link.png" />
                                         </div>
                                     </td>
-                                    <td>2018-12-31</td>
-                                    <td>問合せ対応</td>
-                                    <td>須磨和久</td>
-                                    <td>どうやったら利用を開始できますか？</td>
-                                    <td>下記のホームページを参考にしてください。<br /><a href="https://google.com/" target="_blank">https://google.com/</a></td>
+                                    <td>{{c.date}}</td>
+                                    <td>{{c.kind}}</td>
+                                    <td>{{c.charge}}</td>
+                                    <td>{{c.question}}</td>
+                                    <td>{{c.answer}}</td>
                                 </tr>
                             </tbody>
                         </table>
